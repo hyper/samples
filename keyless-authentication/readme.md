@@ -4,7 +4,7 @@ Simple Electron app that demos the new Hyper OAuth API and leverages it in a Des
 
 ## Dependencies
 
-Electron (global install) `yarn add -g electron` OR `npm install -g electron`
+Electron (global install) `yarn add -g electron` OR `npm i -g electron`
 
 ## Usage
 
