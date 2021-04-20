@@ -1,0 +1,27 @@
+{
+  "name": "keyless-authentication",
+  "productName": "keyless-authentication",
+  "version": "1.0.0",
+  "description": "Sample integrations built by Hyper.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": {
+    "name": "Connor Stevens"
+  },
+  "license": "MIT",
+  "config": {},
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "electron": "12.0.4",
+    "eslint": "^7.24.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
+  }
+}
