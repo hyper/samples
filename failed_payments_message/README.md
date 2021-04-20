@@ -1,4 +1,4 @@
-# StripeCord - Message Cardholder on Failed Payment
+# Message Cardholder on Failed Payment
 
 Cardholder will receive a direct message and get notified when it happens.
 
