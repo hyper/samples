@@ -1,6 +1,6 @@
 # keyless-authentication
 
-keyless-authentication is an Electron application that demos the new Hyper OAuth API & leverages it in a Desktop application.
+Simple Electron app that demos the new Hyper OAuth API and leverages it in a Desktop application.
 
 ## Dependencies
 
