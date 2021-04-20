@@ -4,5 +4,5 @@ const { ipcRenderer } = require('electron');
 const login = document.getElementById('login');
 
 login.onclick = function handleLoginClicked() {
-	ipcRenderer.send('login');
+  ipcRenderer.send('login');
 };

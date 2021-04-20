@@ -6,8 +6,8 @@ const router = express.Router();
 
 // GET /callback
 router.get('/callback', (req, res) => {
-	res.json({ success: true });
-	ipcRenderer.send('login-success', req.query);
+  res.json({ success: true });
+  ipcRenderer.send('login-success', req.query);
 });
 
 module.exports = router;

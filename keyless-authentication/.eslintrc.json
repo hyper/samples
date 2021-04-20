@@ -11,8 +11,6 @@
         "ecmaVersion": 11
     },
     "rules": {
-        "linebreak-style": ["error", "windows"],
-        "indent": ["error", "tab", { "SwitchCase": 1 }],
-        "no-tabs": 0
+        "linebreak-style": ["error", "windows"]
     }
 }
