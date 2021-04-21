@@ -56,38 +56,44 @@ export default function Purchase({ release }) {
 
   return (
     <div className="min-vh-100 d-flex align-items-center p-3 bg-light">
-      <div className="card rounded-lg p-4 mx-auto border" style={{ maxWidth: '28rem' }}>
-        <div>
-          You can modify this purchase page however you like stylistically. The only important part is that the
-          inputs are linked up to the form!
+      <div className="card rounded-lg mx-auto border" style={{ maxWidth: '28rem' }}>
+        <div className="card-header bg-white py-3">
+          <h4 className="mb-0">Purchase</h4>
         </div>
-        <hr className="my-3" />
-        <Formik
-          initialValues={{
-            name: '',
-            email: '',
-            card: '',
-          }}
-          onSubmit={handleSubmit}
-        >
-          {({ isSubmitting }) => (
-            <Form>
-              <div className="form-group">
-                <label htmlFor="email">Email address</label>
-                <Field className="form-control" name="email" placeholder="johndoe@gmail.com" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="name">Full name</label>
-                <Field className="form-control" name="name" placeholder="John Doe" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="card">Card information</label>
-                <Field className="form-control" name="card" as={CardElement} />
-              </div>
-              <button className="btn btn-primary w-100" type="submit" disabled={isSubmitting}>Pay now</button>
-            </Form>
-          )}
-        </Formik>
+        <div className="card-body">
+
+          <div>
+            You can modify this purchase page however you like stylistically. The only important part is that the
+            inputs are linked up to the form!
+          </div>
+          <hr />
+          <Formik
+            initialValues={{
+              name: '',
+              email: '',
+              card: '',
+            }}
+            onSubmit={handleSubmit}
+          >
+            {({ isSubmitting }) => (
+              <Form>
+                <div className="form-group">
+                  <label htmlFor="email">Email address</label>
+                  <Field className="form-control" name="email" placeholder="johndoe@gmail.com" />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="name">Full name</label>
+                  <Field className="form-control" name="name" placeholder="John Doe" />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="card">Card information</label>
+                  <Field className="form-control" name="card" as={CardElement} />
+                </div>
+                <button className="btn btn-primary w-100" type="submit" disabled={isSubmitting}>Pay now</button>
+              </Form>
+            )}
+          </Formik>
+        </div>
       </div>
     </div>
   );
