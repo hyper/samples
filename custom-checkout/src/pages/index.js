@@ -9,19 +9,18 @@ export default function Index() {
         </div>
         <div className="card-body">
         <p>
-          Before you begin, make sure you have followed the completed
+          Before you begin, make sure you have completed
           the <a href="https://github.com/meta-labs/samples/tree/main/custom-checkout#required-configuration" target="_blank">required
           configuration</a>.
           You must also disable <a href="https://hyper.co/settings/protection" target="_blank">bot
-          protection</a> and <a href="https://hyper.co/settings/payments" target="_blank">require login</a> for custom
-          checkout to work.
+          protection</a> and <a href="https://hyper.co/settings/payments" target="_blank">require login</a> for this example to work.
         </p>
         <p>
           When you're ready, <a href="https://hyper.co/new" target="_blank">create a release</a> in the Hyper dashboard.
           Once you've created a release, copy the password and go to the following page on this site.
         </p>
 
-        <div className="bg-light rounded my-1 px-2 py-1 text-monospace">/purchase?password={'<password>'}</div>
+        <div className="bg-light rounded my-1 p-2 text-monospace">/purchase?password={'<password>'}</div>
         </div>
       </div>
     </div>
