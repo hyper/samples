@@ -1,8 +1,8 @@
 # Custom checkout flow example
 
 This example uses:
-  - Next.js(https://nextjs.org)
-  - [react-stripe-js](https://github.com/stripe/react-stripe-js) for [Elements](https://stripe.com/elements)
+  - [Next.js](https://nextjs.org)
+  - [react-stripe-js](https://github.com/stripe/react-stripe-js) for [Stripe Elements](https://stripe.com/elements)
   - The Hyper API ([docs](https://docs.hyper.co))
 
 ## Deploy your own
