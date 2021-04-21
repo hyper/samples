@@ -85,20 +85,22 @@ export default function Purchase({ release }) {
                   <label htmlFor="name">Full name</label>
                   <Field className="form-control" name="name" placeholder="John Doe" />
                 </div>
-                <div className="form-group">
-                  <label htmlFor="card">Card information</label>
-                  <Field as={CardElement} className="form-control py-2" name="card" options={{
-                    style: {
-                      base: {
-                        fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"',
-                        fontSize: '16px',
-                        '::placeholder': {
-                          color: '#6C757D',
+                { release.plan.type !== "free" && (
+                  <div className="form-group">
+                    <label htmlFor="card">Card information</label>
+                    <Field as={CardElement} className="form-control py-2" name="card" options={{
+                      style: {
+                        base: {
+                          fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"',
+                          fontSize: '16px',
+                          '::placeholder': {
+                            color: '#6C757D',
+                          },
                         },
                       },
-                    },
-                  }} />
-                </div>
+                    }} />
+                  </div>
+                )}
                 <button className="btn btn-primary w-100" type="submit" disabled={isSubmitting}>Pay now</button>
               </Form>
             )}
