@@ -12,17 +12,19 @@ const EVENT_NAMES = {
   'license.deleted': 'License Deleted',
 };
 
-const getFields = async function getEventEmbed(event) {
-  const { email, plan, customer } = event.data;
+const getFields = async function getEventEmbed(event, icon) {
+  const {
+    email, plan, customer,
+  } = event.data;
 
   return {
     username: 'Hyper',
-    avatar_url: 'https/i.imgur.com/C3CMJQ8.png',
+    avatar_url: 'https://i.imgur.com/C3CMJQ8.png',
     embeds: [{
-      color: '#EDA2D0',
+      color: 15573712,
       author: {
         name: EVENT_NAMES[event.type],
-        icon_url: '',
+        icon_url: icon,
       },
       fields: [
         {
@@ -35,15 +37,15 @@ const getFields = async function getEventEmbed(event) {
           value: email,
           inline: true,
         },
-        ...(customer && {
+        ...(customer ? [{
           name: '**Customer**',
           value: customer,
           inline: false,
-        }),
+        }] : []),
       ],
       footer: {
-        text: 'Hyper | Hyper.co',
-        icon_url: 'https/i.imgur.com/C3CMJQ8.png',
+        text: 'Hyper | hyper.co',
+        icon_url: 'https://i.imgur.com/C3CMJQ8.png',
       },
     }],
   };
@@ -51,7 +53,7 @@ const getFields = async function getEventEmbed(event) {
 
 const deliver = async function deliverEventEmbed(embed) {
   try {
-    axios({
+    await axios({
       method: 'POST',
       url: process.env.HOOK,
       headers: {
@@ -60,7 +62,7 @@ const deliver = async function deliverEventEmbed(embed) {
       data: JSON.stringify(embed),
     });
   } catch (err) {
-    console.error(err);
+    console.error(err.response);
   }
 };
 
@@ -69,11 +71,11 @@ const handle = async function handleEvent(event) {
     // eslint-disable-next-line default-case
     switch (event.type) {
       case 'license.created': {
-        const embed = getFields(event, Icons.plus);
+        const embed = await getFields(event, Icons.plus);
         return deliver(embed);
       }
       case 'license.deleted': {
-        const embed = getFields(event, Icons.warn);
+        const embed = await getFields(event, Icons.warn);
         return deliver(embed);
       }
     }

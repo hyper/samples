@@ -11,7 +11,6 @@ const { handle } = require('./services/webhook');
 // Get ENV variables
 const { TOKEN, HOOK } = process.env;
 const PORT = process.env.PORT || 5000;
-const IS_DEV = process.env.IS_DEV === 'true';
 
 // Set up server and webhook
 // Optional diahook webhook object to validate request bodies
