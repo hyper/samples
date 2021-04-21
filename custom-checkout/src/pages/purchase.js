@@ -85,7 +85,7 @@ export default function Purchase({ release }) {
                   <label htmlFor="name">Full name</label>
                   <Field className="form-control" name="name" placeholder="John Doe" />
                 </div>
-                { (release.plan.type !== "free" || release.plan.amount == 0) && (
+                { release.plan.amount == 0 && (
                   <div className="form-group">
                     <label htmlFor="card">Card information</label>
                     <Field as={CardElement} className="form-control py-2" name="card" options={{
