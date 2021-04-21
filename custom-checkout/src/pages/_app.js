@@ -3,12 +3,18 @@ import PropTypes from 'prop-types';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Head from 'next/head';
 
 function App({ Component, pageProps }) {
   return (
-    <Elements stripe={loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)}>
-      <Component {...pageProps} />
-    </Elements>
+    <>
+      <Head>
+        <script src="https://hyper.co/js/power.js" />
+      </Head>
+      <Elements stripe={loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)}>
+        <Component {...pageProps} />
+      </Elements>
+    </>
   );
 }
 
