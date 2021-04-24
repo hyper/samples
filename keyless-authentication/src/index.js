@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 // eslint-disable-next-line import/no-extraneous-dependencies
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
@@ -70,15 +72,15 @@ ipcMain.on('login', () => {
   loginWindow.setMenuBarVisibility(false);
 
   // and load the index.html of the app.
-  loginWindow.loadURL('https://dashboard.eqpt.io/oauth/authorize?redirect_uri=http://localhost:6789/auth/callback');
+  loginWindow.loadURL(`https://${process.env.PORTAL}/oauth/authorize?grant_type=license&redirect_uri=http://localhost:6789/auth/callback`);
 });
 
 // Handle login-success event from the serverWindow
 ipcMain.on('login-success', (_e, data) => {
-  const { license, user } = data;
-  if (!license || !user) return;
+  const { license } = data;
+  if (!license) return;
   // eslint-disable-next-line no-console
-  console.log({ license, user });
+  console.log({ license });
   loginWindow.hide();
 
   // At this point, show task window or "Authenticated" windows
