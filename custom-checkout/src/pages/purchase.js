@@ -13,20 +13,23 @@ export default function Purchase({ release }) {
 
   async function handleSubmit(values, actions) {
     const cardElement = elements.getElement('card');
+    let paymentMethod;
 
-    const paymentMethod = await stripe.createPaymentMethod({
-      type: 'card',
-      card: cardElement,
-      billing_details: { name: values.name.trim(), email: values.email.trim() },
-    }).then((result) => {
-      if (result.error) {
-        alert(result.error.message);
-        actions.setSubmitting(false);
-        return null;
-      }
+    if(release.plan.type !== "free"){
+      paymentMethod = await stripe.createPaymentMethod({
+        type: 'card',
+        card: cardElement,
+        billing_details: { name: values.name.trim(), email: values.email.trim() },
+      }).then((result) => {
+        if (result.error) {
+          alert(result.error.message);
+          actions.setSubmitting(false);
+          return null;
+        }
 
-      return result.paymentMethod;
-    });
+        return result.paymentMethod;
+      });
+    }
 
     await createCheckout({
       release: release.id,
@@ -34,7 +37,7 @@ export default function Purchase({ release }) {
         name: values.name,
         email: values.email,
       },
-      payment_method: paymentMethod.id,
+      ...(paymentMethod && { payment_method: paymentMethod.id })
     }).then(async ({ id }) => {
       const checkout = await pollCheckout(id);
 
