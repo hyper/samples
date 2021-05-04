@@ -1,0 +1,11 @@
+{
+  "name": "hyper-node-auth",
+  "version": "1.0.0",
+  "description": "Hyper login and logout for a node application. Binds the license to the machine through use of a hardware ID",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "node-machine-id": "^1.1.12"
+  }
+}
