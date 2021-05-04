@@ -9,9 +9,9 @@ const update = async (license) => {
   axios({
     method: "PATCH",
     url: `https://api.hyper.co/v4/licenses/${license}`,
-    data: {
+    data: JSON.stringify({
       metadata: { hwid: hwid },
-    },
+    }),
     headers: {
       Authorization: `Bearer ${API_KEY}`,
       "Content-Type": "application/json",
@@ -31,14 +31,14 @@ const login = (license) => {
     },
   })
     .then((response) => {
-      let license = response.data;
+      let licenseData = response.data;
       if (
-        license.metadata?.hwid !== hwid &&
-        license.metadata?.hwid !== void 0
+        licenseData.metadata?.hwid !== hwid &&
+        licenseData.metadata?.hwid !== void 0
       ) {
         console.log("active on another machine");
       } else {
-        license.metadata?.hwid ?? update(license);
+        licenseData.metadata?.hwid ?? update(license);
         console.log("successful login");
       }
     })
