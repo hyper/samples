@@ -1,54 +1,68 @@
-const { getHWID } = require('hwid');
-const axios = require('axios');
+const axios = require("axios").default;
+const { machineIdSync } = require("node-machine-id");
+const hwid = machineIdSync();
 
-const API_KEY = 'pk_KvrP5CpaUvRMMpgUmfM6NIEzFMgXfxcx';
+const API_KEY = "";
 
-// Log function
-function log(content) {
-  const now = new Date().toISOString()
-    .replace(/T/, ' ')
-    .replace(/\..+/, '');
-  console.log(now, content);
-}
+// Update metadata
+const update = async (license) => {
+  axios({
+    method: "PATCH",
+    url: `https://api.hyper.co/v4/licenses/${license}`,
+    data: {
+      metadata: { hwid: hwid },
+    },
+    headers: {
+      Authorization: `Bearer ${API_KEY}`,
+      "Content-Type": "application/json",
+    },
+  })
+    .then(() => console.log("metadata updated"))
+    .catch(() => console.log("error updating metadata"));
+};
 
-
-// Retrieve license function
-async function getLicense(license) {
-  return axios.get(`https://api.hyper.co/v4/licenses/${license}`,
-    { headers: { Authorization: `Bearer ${API_KEY}` } })
-    .then((response) => response.data)
-    .catch(() => undefined);
-}
-
-
-// Update license function
-async function updateLicense(license, hwid) {
-  return axios.patch(`https://api.hyper.co/v4/licenses/${license}`,
-    {
-      headers: { Authorization: `Bearer ${API_KEY}` },
-      'metadata.hwid': hwid,
+// Login (binds to machine)
+const login = (license) => {
+  axios({
+    method: "GET",
+    url: `https://api.hyper.co/v4/licenses/${license}`,
+    headers: {
+      Authorization: `Bearer ${API_KEY}`,
+    },
+  })
+    .then((response) => {
+      let license = response.data;
+      if (
+        license.metadata?.hwid !== hwid &&
+        license.metadata?.hwid !== void 0
+      ) {
+        console.log("active on another machine");
+      } else {
+        license.metadata?.hwid ?? update(license);
+        console.log("successful login");
+      }
     })
-    .then((response) => response.data)
-    .catch(() => undefined);
-}
+    .catch(() => console.log("invalid license"));
+};
 
-// Login function
-async function checkLicense(license) {
-  log('Checking license...');
-  const licenseData = await getLicense(license);
-  if (licenseData) {
-    const hwid = await getHWID();
-    if (licenseData.metadata === {}) {
-      const updated = await updateLicense(license, hwid);
-      if (updated) return true;
-      log('Something went wrong, please retry.');
-    } else {
-      const currentHwid = licenseData.metadata.hwid;
-      if (currentHwid === hwid) return true;
-      log('License is already in use on another machine!');
-    }
-  } else {
-    log('License not found.');
-    return false;
-  }
-}
+// Logout (unbinds from machine)
+const logout = (license) => {
+  axios({
+    method: "PATCH",
+    url: `https://api.hyper.co/v4/licenses/${license}`,
+    data: {
+      metadata: null,
+    },
+    headers: {
+      Authorization: `Bearer ${API_KEY}`,
+      "Content-Type": "application/json",
+    },
+  })
+    .then(() => console.log("logged out"))
+    .catch(() => console.log("error resetting metadata"));
+};
+
+// API_KEY required line: 5
+
+// login("ABCD-ABCD-ABCD-ABCD");
+// logout("ABCD-ABCD-ABCD-ABCD");
