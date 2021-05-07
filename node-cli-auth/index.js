@@ -17,9 +17,8 @@ async function getLicense(license) {
   return axios.get(`https://api.hyper.co/v4/licenses/${license}`,
     { headers: { Authorization: `Bearer ${API_KEY}` } })
     .then((response) => response.data)
-    .catch(() => undefined);
+    .catch(() => log('Failed to get license'));
 }
-
 
 // Update license function
 async function updateLicense(license, hwid) {
@@ -29,24 +28,36 @@ async function updateLicense(license, hwid) {
       'metadata.hwid': hwid,
     })
     .then((response) => response.data)
-    .catch(() => undefined);
+    .catch(() => log('Failed to update license'));
+}
+
+// Reset license function
+async function resetLicense(license) {
+  return axios.patch(`https://api.hyper.co/v4/licenses/${license}`,
+    {
+      headers: { Authorization: `Bearer ${API_KEY}` },
+      'metadata.hwid': null,
+    })
+    .then((response) => response.data)
+    .catch(() => log('Failed to reset license'));
 }
 
 // Login function
 async function checkLicense(license) {
   log('Checking license...');
   const licenseData = await getLicense(license);
-  if (licenseData) {
+  if (licenseData && licenseData.user) {
     const hwid = await getHWID();
     if (licenseData.metadata === {}) {
-      const updated = await updateLicense(license, hwid);
-      if (updated) return true;
-      log('Something went wrong, please retry.');
+      await updateLicense(license, hwid);
     } else {
       const currentHwid = licenseData.metadata.hwid;
       if (currentHwid === hwid) return true;
       log('License is already in use on another machine!');
     }
+  } else if(!licenseData.user){
+    log('License not bound.');
+    return false;
   } else {
     log('License not found.');
     return false;
