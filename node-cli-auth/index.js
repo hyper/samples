@@ -31,7 +31,7 @@ async function updateLicense(license, hwid) {
 // Reset license function
 async function resetLicense(license) {
   return axios.patch(`https://api.hyper.co/v4/licenses/${license}`, {
-    'metadata.hwid': null,
+    metadata: null,
   }, {
     headers: { Authorization: `Bearer ${API_KEY}` },
   }).then((response) => response.data)
