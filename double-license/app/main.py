@@ -12,7 +12,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
-with open('path/to/serviceAccount.json') as p:
+with open('serviceAccountKey.json') as p:
     cred_json = {}
 
 cred = credentials.Certificate(cred_json)
