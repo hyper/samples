@@ -6,7 +6,7 @@ import stripe
 from dotenv import load_dotenv
 from flask import Flask, request
 
-from utils import message_channel, message_user
+from .utils import message_channel, message_user
 
 load_dotenv()
 
@@ -40,7 +40,7 @@ def stripe_endpoint():
             if req.status_code == 200:
                 data = req.json()
                 if data['total'] > 0:
-                    user = data['data'][0].get('user', {}).get('discord', {})
+                    user = data['data'][0].get('user', {}).get('discord', None)
                     if user:
                         content = '[Payment Failed] '
                         messaged = message_user(
