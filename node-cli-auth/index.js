@@ -13,8 +13,7 @@ function log(content) {
 async function getLicense(license) {
   return axios.get(`https://api.hyper.co/v4/licenses/${license}`, {
     headers: { Authorization: `Bearer ${API_KEY}` },
-  })
-    .then((response) => response.data)
+  }).then((response) => response.data)
     .catch(() => log('Failed to get license'));
 }
 
