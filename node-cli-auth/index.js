@@ -10,7 +10,7 @@ function log(content) {
 }
 
 // Retrieve license function
-async function getLicense(license) {
+function getLicense(license) {
   return axios.get(`https://api.hyper.co/v4/licenses/${license}`, {
     headers: { Authorization: `Bearer ${API_KEY}` },
   }).then((response) => response.data)
@@ -18,7 +18,7 @@ async function getLicense(license) {
 }
 
 // Update license function
-async function updateLicense(license, hwid) {
+function updateLicense(license, hwid) {
   return axios.patch(`https://api.hyper.co/v4/licenses/${license}`, {
     metadata: { hwid },
   }, {
@@ -28,7 +28,7 @@ async function updateLicense(license, hwid) {
 }
 
 // Reset license function
-async function resetLicense(license) {
+function resetLicense(license) {
   return axios.patch(`https://api.hyper.co/v4/licenses/${license}`, {
     metadata: null,
   }, {
