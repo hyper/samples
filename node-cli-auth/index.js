@@ -42,7 +42,7 @@ async function resetLicense(license) {
 async function checkLicense(license) {
   log('Checking license...');
   const licenseData = await getLicense(license);
-  if (licenseData && licenseData.user) {
+  if (licenseData?.user) {
     const hwid = await getHWID();
     if (Object.keys(licenseData.metadata).length === 0) {
       await updateLicense(license, hwid);
