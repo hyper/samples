@@ -36,7 +36,7 @@ def stripe_endpoint():
                 'Authorization': f'Bearer {HYPER_SECRET_KEY}'
             }
 
-            req = requests.get(f'https://api.hyper.co/v4/licenses?customer={customer_id}', headers=headers)
+            req = requests.get(f'https://api.hyper.co/v6/licenses?customer={customer_id}', headers=headers)
             if req.status_code == 200:
                 data = req.json()
                 if data['total'] > 0:
