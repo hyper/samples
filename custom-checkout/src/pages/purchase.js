@@ -32,6 +32,7 @@ export default function Purchase({ release }) {
     }
 
     await createCheckout({
+      type: 'link',
       release: release.id,
       billing_details: {
         name: values.name,
