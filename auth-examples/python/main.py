@@ -2,9 +2,6 @@ import time
 from datetime import datetime
 from utils import check_license, log
 
-API_KEY = ''  # replace with your api key
-
-
 def main() -> None:
     """
     :return:

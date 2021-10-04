@@ -1,7 +1,7 @@
 import requests
 from typing import Optional
 
-API_KEY = 'pk_j3jVTNVUBk1QUgkO6yBoRjtbOsHmsXZb'  # replace with your api key
+API_KEY = ''  # replace with your api key
 
 
 def get_license(license_key: str) -> Optional[dict]:
