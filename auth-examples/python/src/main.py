@@ -2,6 +2,7 @@ import time
 from datetime import datetime
 from utils import check_license, log
 
+
 def main() -> None:
     """
     :return:

@@ -29,9 +29,11 @@ def check_license(license_key: str, hardware_lock: bool = False) -> Optional[boo
     """
     :param license_key: The user's license key
     :type license_key: str
-    :param hardware_lock:
+    :param hardware_lock: Whether or not to use hardware ID locking
     :type hardware_lock: bool
     :return: bool | None
+
+    Performs all necessary authentication logic to log a user in
     """
     log('Checking license {0}'.format(license_key))
 
