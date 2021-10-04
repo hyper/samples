@@ -22,7 +22,7 @@ def get_hwid() -> str:
 
     Generates a unique identifier that represents the current machine
     """
-    return ':'.join(re.findall('../..', '%012x' % uuid.getnode()))
+    return ':'.join(re.findall('..', '%012x' % uuid.getnode()))
 
 
 def check_license(license_key: str, hardware_lock: bool = False) -> Optional[bool]:

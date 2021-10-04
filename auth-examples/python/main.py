@@ -2,7 +2,7 @@ import time
 from datetime import datetime
 from utils import check_license, log
 
-API_KEY = 'pk_KvrP5CpaUvRMMpgUmfM6NIEzFMgXfxcx'  # replace with your api key
+API_KEY = ''  # replace with your api key
 
 
 def main() -> None:
@@ -33,3 +33,7 @@ def main() -> None:
         # if applicable, and is allowed to run the main function of the software. You can import
         # this function from another library file, or put your code directly in this main function
         # after the validation above.
+
+
+if __name__ == '__main__':
+    main()
