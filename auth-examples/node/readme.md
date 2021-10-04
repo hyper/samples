@@ -1,5 +1,4 @@
 # NodeJS Authentication
-***
 
 ## Requirements
 axios@latest \
