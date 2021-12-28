@@ -5,13 +5,13 @@ API combined with Redis to cache responses. This prevents sending excessive
 requests to the Hyper API, and allows you to ping the API as frequently as 
 you'd like. You can also add SSL pinning and other security features if so desired.
 
-###Current functionality:
+## Current functionality:
 - Allows a license to be retrieved from the API
 - Uses Redis to store license values
 - Caches responses for 15 minutes, before invalidating the stored value
 
 
-### How to run locally:
+## How to run locally:
 - `cp .env.example .env`
 - Fill out the `.env` file accordingly — if you are running redis locally, you can leave the redis values empty. The only required field is `HYPER_SECRET_KEY`
 
