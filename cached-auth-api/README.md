@@ -23,12 +23,12 @@ Start the API:
 - `yarn dev` in the root of `cached-auth-api`
 
 
-### How to test:
+## How to test:
 - Send a request to http://localhost:7000/<LICENSE_KEY>
 - The first request will not hit the cache, so the response time should be a few hundred milliseconds
 - Send another request to http://localhost:7000/<LICENSE_KEY>
 - This request should only take mere milliseconds — we're no longer fetching from the Hyper API, but Redis instead
 
-### Need help?
+## Need help?
 - Email connor<i_hate_bots_remove_this>@hyper.co
 - Message Connor on Discord — connorstevens#0001
