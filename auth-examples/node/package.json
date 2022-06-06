@@ -1,7 +1,10 @@
 {
+  "name": "auth-examples-node",
+  "version": "0.0.1",
+  "license": "MIT",
   "dependencies": {
-    "axios": "^0.22.0",
-    "dayjs": "^1.10.7",
+    "axios": "^0.27.2",
+    "dayjs": "^1.11.3",
     "hwid": "^0.2.1"
   }
 }
